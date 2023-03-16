@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>setTimeout use</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+  <h2>Tejaswini Kotha speed check</h2>
+  <div id="target">Your time: </div>
+    <div id="counter">Count: </div>
+    <button onclick="startTime()">Start Timer</button>
+    <button id="reactBtn">React</button>
+    <button type="button" onclick="startRandomTime()">Start Random Time</button>
+    <script>
+      let reactTime = undefined;
+
+      function recordTime() {
+        reactTime = Date.now();
+        console.log(reactTime);
+      }
+
+      document.getElementById("reactBtn").onclick = recordTime;
+
+      function startTime() {
+        for (let i = 0; i < 9; i++) {
+          setTimeout(function () {
+            document.getElementById("counter").innerHTML = "Count: " + i;
+          }, (8 - i) * 1000);
+        }
+
+        setTimeout(function () {
+          if (reactTime === undefined) {
+            document.getElementById("target").innerHTML = "Too Slow";
+          } else {
+            const endTime = Date.now();
+            const elapsedTime = endTime - reactTime;
+            document.getElementById("target").innerHTML =
+              "Time was " + elapsedTime + " milliseconds";
+          }
+        }, 8000);
+      }
+      function startRandomTime()
+  {
+      startCount = Math.floor(Math.random() * (10 - 2 + 1) + 2)
+      for(let i=0;i<=startCount;i++)
+      {
+        setTimeout(function(){
+      document.getElementById('counter').innerHTML=i;
+    }, (startCount-i)*1000)
+      }
+      setTimeout(function(){
+        if(myTime==undefined)
+        {
+      document.getElementById('target').innerHTML="Too Slow";
+        }
+        else
+        {
+            var buttonTime=Date.now();
+            console.log(buttonTime);
+            var difference=buttonTime-myTime;
+            document.getElementById('target').innerHTML="Time was "+difference;
+        }
+    },startCount*1000)
+    
+
+  }
+    </script>
+
+
+</body>
+</html>
